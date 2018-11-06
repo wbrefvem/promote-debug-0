@@ -30,6 +30,9 @@ pipeline {
           dir ('./charts/preview') {
            container('maven') {
              sh "make preview"
+             echo "$BRANCH_NAME"
+             echo "$CHANGE_URL"
+             sh "git remote show origin"
              sh "jx preview --app $APP_NAME --dir ../.."
            }
           }
